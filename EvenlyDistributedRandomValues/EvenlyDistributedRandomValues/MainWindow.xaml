@@ -1,0 +1,45 @@
+﻿<Window x:Class="EvenlyDistributedRandomValues.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EvenlyDistributedRandomValues"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="328*"/>
+            <RowDefinition Height="48*"/>
+        </Grid.RowDefinitions>
+        <Grid  Grid.Row="2">
+            <Viewbox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Content="M:" VerticalContentAlignment="Center"/>
+                    <Label x:Name="lblExpectedValue"/>
+                    <Label Content="D:" VerticalContentAlignment="Center"/>
+                    <Label x:Name="lblDispersion"/>
+                    <Label Content="Q:" VerticalContentAlignment="Center"/>
+                    <Label x:Name="lblSquareDeviation"/>
+                    <Label Content="Period length:" VerticalContentAlignment="Center"/>
+                    <Label x:Name="lblPeriodLength"/>
+                    <Label Content="Aperiodicity length:" VerticalContentAlignment="Center"/>
+                    <Label x:Name="lblAperiodicityLength"/>
+                </StackPanel>
+            </Viewbox>
+        </Grid>
+        <Grid  Grid.Row="0">
+            <Viewbox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Content="a" VerticalContentAlignment="Center"/>
+                    <TextBox MinWidth="100"/>
+                    <Label Content="R0" VerticalContentAlignment="Center"/>
+                    <TextBox MinWidth="100"/>
+                    <Label Content="m" VerticalContentAlignment="Center"/>
+                    <TextBox MinWidth="100"/>
+                    <Button x:Name="btnCalculate" Content="Calculate" Margin="5,0,0,0" Click="btnCalculate_Click"/>
+                </StackPanel>
+            </Viewbox>
+        </Grid>
+    </Grid>
+</Window>
