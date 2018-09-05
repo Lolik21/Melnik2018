@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:local="clr-namespace:EvenlyDistributedRandomValues"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -32,14 +33,19 @@
             <Viewbox>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Label Content="a" VerticalContentAlignment="Center"/>
-                    <TextBox MinWidth="100"/>
-                    <Label Content="R0" VerticalContentAlignment="Center"/>
-                    <TextBox MinWidth="100"/>
+                    <TextBox x:Name="TextBoxA" MinWidth="100"/>
                     <Label Content="m" VerticalContentAlignment="Center"/>
-                    <TextBox MinWidth="100"/>
+                    <TextBox x:Name="TextBoxM" MinWidth="100"/>
+                    <Label Content="R0" VerticalContentAlignment="Center"/>
+                    <TextBox x:Name="TextBoxR0" MinWidth="100"/>
+                    <Label Content="Max" VerticalContentAlignment="Center"/>
+                    <TextBox x:Name="TextBoxMax" MinWidth="100"/>
                     <Button x:Name="btnCalculate" Content="Calculate" Margin="5,0,0,0" Click="btnCalculate_Click"/>
                 </StackPanel>
             </Viewbox>
+        </Grid>
+        <Grid Grid.Row="1">
+            <oxy:PlotView Model="{Binding PlotModel}"/>
         </Grid>
     </Grid>
 </Window>
