@@ -45,7 +45,7 @@
             </Viewbox>
         </Grid>
         <Grid Grid.Row="1">
-            <oxy:PlotView Model="{Binding PlotModel}" Background="White"/>
+            <oxy:PlotView Model="{Binding PlotModel}"/>
         </Grid>
     </Grid>
 </Window>
