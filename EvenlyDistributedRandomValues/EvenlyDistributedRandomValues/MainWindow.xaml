@@ -26,6 +26,8 @@
                     <Label x:Name="lblPeriodLength"/>
                     <Label Content="Aperiodicity length:" VerticalContentAlignment="Center"/>
                     <Label x:Name="lblAperiodicityLength"/>
+                    <Label Content="Equality mark:" VerticalContentAlignment="Center"/>
+                    <Label x:Name="lblEquality"/>
                 </StackPanel>
             </Viewbox>
         </Grid>

@@ -44,6 +44,8 @@ namespace EvenlyDistributedRandomValues
         {
             double r1;
             var collection = new List<double>();
+            var r2 = r0;
+            Task.Run(() => FindPeriods(a, r2, m, max));
             for (int i = 0; i < max; i++)
             {
                 r1 = (r0 * a) % m;
@@ -55,14 +57,69 @@ namespace EvenlyDistributedRandomValues
             ModelGenerator.GenerateModel(_mainViewModel);
         }
 
+        private void FindPeriods(int a, double r0, int m, int max)
+        {
+            var collection = new List<double>();
+            for (int i = 0; i < 1000000; i++)
+            {
+                var r1 = (r0 * a) % m;
+                collection.Add((double)r1 / m);
+                r0 = r1;
+            }
+
+            var last = collection.Last();
+            var j = collection.Count - 2;
+            var period = 1;
+            while (collection[j] != last)
+            {
+                j--;
+                period++;
+                if (j < 0) break;
+            }
+
+            if (j > 0)
+            {
+                var k = 0;
+                while (collection[k] != collection[k + period])
+                {
+                    k++;
+                }
+
+                this.Dispatcher.Invoke(() => {
+                    lblPeriodLength.Content = period;
+                    lblAperiodicityLength.Content = k + period;
+                });
+                
+            }
+            else
+            {
+                lblPeriodLength.Content = ">1M";
+            }
+        }
+
         private void CalculateStatistics(List<double> collection)
         {
             var expectedValue = collection.Sum() / collection.Count;
             var dispersion = collection.Sum(number => Math.Pow(number - expectedValue, 2)) / collection.Count;
             var squareDeviation = Math.Sqrt(dispersion);
-            lblExpectedValue.Content = expectedValue;
-            lblDispersion.Content = dispersion;
-            lblSquareDeviation.Content = squareDeviation;
+            lblEquality.Content = CalculateEquality(collection);
+            lblExpectedValue.Content = Math.Round(expectedValue, 5);
+            lblDispersion.Content = Math.Round(dispersion, 5);
+            lblSquareDeviation.Content = Math.Round(squareDeviation, 5);
+        }
+
+        private double CalculateEquality(List<double> collection)
+        {
+            var counter = 0;
+            for (int i = 0; i < collection.Count - 1; i += 2)
+            {
+                if (Math.Pow(collection[i], 2) + Math.Pow(collection[i+1], 2) < 1)
+                {
+                    counter++;
+                }
+            }
+
+            return (counter * 2) / (double)collection.Count;
         }
 
         private void GetValues(out int a, out double r0, out int m, out int max)
