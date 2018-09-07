@@ -40,9 +40,9 @@ namespace EvenlyDistributedRandomValues
             }
         }
 
-        private void GenerateValues(int a, int r0, int m, int max)
+        private void GenerateValues(int a, double r0, int m, int max)
         {
-            int r1;
+            double r1;
             var collection = new List<double>();
             for (int i = 0; i < max; i++)
             {
@@ -65,7 +65,7 @@ namespace EvenlyDistributedRandomValues
             lblSquareDeviation.Content = squareDeviation;
         }
 
-        private void GetValues(out int a, out int r0, out int m, out int max)
+        private void GetValues(out int a, out double r0, out int m, out int max)
         {
              a = Parse(TextBoxA.Text);
              r0 = Parse(TextBoxR0.Text);
