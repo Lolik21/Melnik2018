@@ -46,7 +46,7 @@ namespace EvenlyDistributedRandomValues
             var plotModel = new PlotModel
             {
                 Title = "Normal Distribution Of Random Values",
-                Background = OxyColors.Gray,
+                Background = OxyColors.White,
                 Axes = { xaxis, yaxis },
                 Series = { s1 },
             };
