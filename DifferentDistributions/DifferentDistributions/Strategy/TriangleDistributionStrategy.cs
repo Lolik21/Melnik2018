@@ -13,8 +13,8 @@ namespace DifferentDistributions.Strategy
             {
                 mainWindow.GetValues(out var a, out var r0, out var m, out var max);
                 var randomValues = GenerateValues(a, r0, m, max);
-                mainWindow.GetTriangleValue(out bool isMin);
-                var triangleValues = TriangleDistribution(randomValues, isMin).ToList();
+                mainWindow.GetTriangleValue(out bool isMin, out double A, out double B);
+                var triangleValues = TriangleDistribution(randomValues, isMin, A, B).ToList();
                 StatisticsHelper.CalculateStatistics(triangleValues, out double expectedValue,
                     out double dispersion, out double squareDeviation);
                 mainWindow.UpdateStatistics(expectedValue, dispersion, squareDeviation);
@@ -23,7 +23,7 @@ namespace DifferentDistributions.Strategy
             }
         }
 
-        private IEnumerable<double> TriangleDistribution(List<double> randomValues, bool isMin)
+        private IEnumerable<double> TriangleDistribution(List<double> randomValues, bool isMin, double a, double b)
         {
             foreach (var randomValue in randomValues)
             {
@@ -31,12 +31,12 @@ namespace DifferentDistributions.Strategy
                 var randomValue2 = randomValues[Random.Next(randomValues.Count)];
                 if (isMin)
                 {
-                    yield return Math.Min(randomValue1, randomValue2);
+                    yield return a + ((b - a) * Math.Min(randomValue1, randomValue2));
                 }
                 else
                 {
-                    yield return Math.Max(randomValue1, randomValue2);
-                }              
+                    yield return a + ((b - a) * Math.Max(randomValue1, randomValue2));
+                }
             }
         }
     }

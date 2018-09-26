@@ -74,7 +74,7 @@ namespace DifferentDistributions
             lambda = double.Parse(TextBoxGammaLambda.Text, CultureInfo.InvariantCulture);
         }
 
-        public void GetTriangleValue(out bool isMin)
+        public void GetTriangleValue(out bool isMin, out double a, out double b)
         {
             if (ComboBoxTriangle.SelectedIndex == 0)
             {
@@ -84,6 +84,20 @@ namespace DifferentDistributions
             {
                 isMin = false;
             }
+            a = double.Parse(TriangleA.Text, CultureInfo.InvariantCulture);
+            b = double.Parse(TriangleB.Text, CultureInfo.InvariantCulture);
+        }
+
+        internal void GetUniformValues(out double a, out double b)
+        {
+            a = double.Parse(UniformA.Text, CultureInfo.InvariantCulture);
+            b = double.Parse(UniformB.Text, CultureInfo.InvariantCulture);
+        }
+
+        internal void GetSimpsValues(out double a, out double b)
+        {
+            a = double.Parse(SimpsA.Text, CultureInfo.InvariantCulture);
+            b = double.Parse(SimpsB.Text, CultureInfo.InvariantCulture);
         }
     }
 }

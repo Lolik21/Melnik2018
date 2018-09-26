@@ -27,6 +27,22 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="UniformGauss" TargetType="StackPanel">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=ComboBoxStrategy, Path=SelectedIndex}" Value="0">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="Simps" TargetType="StackPanel">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=ComboBoxStrategy, Path=SelectedIndex}" Value="5">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="GammaStackStyle" TargetType="StackPanel" >
             <Setter Property="Visibility" Value="Collapsed"/>
             <Style.Triggers>
@@ -59,7 +75,15 @@
                 <StackPanel Orientation="Horizontal">
                     <ComboBox x:Name="ComboBoxStrategy" ItemsSource="{Binding Strategies}" 
                               DisplayMemberPath="Name" SelectedIndex="0"/>
-                    <StackPanel Orientation="Horizontal"
+                    <StackPanel Orientation="Horizontal" x:Name="StackUniform"
+                                Style="{StaticResource UniformGauss}">
+                        <Label Content="a: "/>
+                        <TextBox x:Name="UniformA" Text="0.0" MinWidth="30"/>
+                        <Label Content="b: "/>
+                        <TextBox x:Name="UniformB" Text="1.0" MinWidth="30"/>
+                    </StackPanel>
+                    
+                        <StackPanel Orientation="Horizontal"
                                 x:Name="StackGauss" Style="{StaticResource GaussStackStyle}">
                         <Label Content="Mx: "/>
                         <TextBox Text="0" MinWidth="30" x:Name="TextBoxGaussExpected"/>
@@ -79,11 +103,22 @@
                         <TextBox x:Name="TextBoxGammaLambda" MinWidth="30" Text="3.0"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"
+                                x:Name="StackSimps" Style="{StaticResource Simps}">
+                        <Label Content="a: "/>
+                        <TextBox x:Name="SimpsA" MinWidth="30" Text="0.0"/>
+                        <Label Content="b: "/>
+                        <TextBox x:Name="SimpsB" MinWidth="30" Text="1.0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
                                 x:Name="StackTriangle" Style="{StaticResource TriangleStackStyle}">
                         <ComboBox x:Name="ComboBoxTriangle">
                             <ComboBoxItem Content="Min" IsSelected="True"/>
                             <ComboBoxItem Content="Max"></ComboBoxItem>
                         </ComboBox>
+                        <Label Content="a: "/>
+                        <TextBox x:Name="TriangleA" Text="0.0" MinWidth="30"/>
+                        <Label Content="b: "/>
+                        <TextBox x:Name="TriangleB" Text="1.0" MinWidth="30"/>
                     </StackPanel>
                     <Button Content="Calculate" Click="ButtonCalculate_Click"></Button>
                 </StackPanel>

@@ -12,7 +12,7 @@ namespace DifferentDistributions.Strategy
 
         protected static readonly Random Random = new Random(DateTime.Now.Millisecond);
 
-        protected List<double> GenerateValues(int a, double r0, int m, int max)
+        protected virtual List<double> GenerateValues(int a, double r0, int m, int max)
         {
             double r1;
             var collection = new List<double>();

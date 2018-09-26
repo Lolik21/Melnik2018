@@ -27,7 +27,7 @@ namespace DifferentDistributions.Strategy
         {
             foreach (var randomValue in randomValues)
             {
-                yield return (-1) * lambda * Math.Log10(randomValue);
+                yield return ((-1) / lambda) * Math.Log(randomValue, 2.72);
             }
         }
     }

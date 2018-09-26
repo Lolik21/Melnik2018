@@ -44,7 +44,7 @@ namespace DifferentDistributions.Strategy
                 {
                     randomIndexes.Add(Random.Next(randomValues.Count));
                 }
-                yield return (-1) * randomIndexes.Sum(i => Math.Log10(randomValues[i]));
+                yield return ((-1) / lambda) * randomIndexes.Sum(i => Math.Log(randomValues[i], 2.72));
             }
         }
     }

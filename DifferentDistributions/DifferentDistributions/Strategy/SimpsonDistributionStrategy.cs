@@ -12,7 +12,8 @@ namespace DifferentDistributions.Strategy
             if (InputFieldsIsValid(mainWindow))
             {
                 mainWindow.GetValues(out var a, out var r0, out var m, out var max);
-                var randomValues = GenerateValues(a, r0, m, max).Where(d => d <= 0.5).ToList();
+                mainWindow.GetSimpsValues(out double A, out double B);
+                var randomValues = GenerateValues(a, r0, m, max, A / 2 ,B / 2);
                 var simpsonValue = SimpsonDistribution(randomValues).ToList();
                 StatisticsHelper.CalculateStatistics(simpsonValue, out double expectedValue,
                     out double dispersion, out double squareDeviation);
@@ -20,6 +21,22 @@ namespace DifferentDistributions.Strategy
                 var model = PlotModelGenerator.GenerateModel(simpsonValue);
                 mainViewModel.UpdatePlotModel(model);
             }
+        }
+
+        private List<double> GenerateValues(int a, double r0, int m, int max, double A, double B)
+        {
+            double r1;
+            var collection = new List<double>();
+            var r2 = r0;
+            for (int i = 0; i < max; i++)
+            {
+                r1 = (r0 * a) % m;
+                var temp = A + (B-A) * (double)r1 / m;
+                collection.Add(temp);
+                r0 = r1;
+            }
+
+            return collection;
         }
 
         private IEnumerable<double> SimpsonDistribution(List<double> randomValues)
