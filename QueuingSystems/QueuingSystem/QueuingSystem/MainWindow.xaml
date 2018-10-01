@@ -13,9 +13,10 @@
             <RowDefinition Height="32*"/>
             <RowDefinition Height="11*"/>
         </Grid.RowDefinitions>
-        <TextBox TextWrapping="Wrap" Text="TextBox" 
+        <TextBox TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
                  HorizontalAlignment="Stretch" 
-                 VerticalAlignment="Stretch" Grid.Row="1"/>
+                 VerticalAlignment="Stretch" Grid.Row="1"
+                 x:Name="TextBoxOutPut"/>
         <Viewbox Grid.Row="2">
             <StackPanel Orientation="Horizontal">
                 <Label Content="A:"/>
@@ -30,9 +31,9 @@
         <Viewbox Grid.Row="0">
             <StackPanel Orientation="Horizontal">
                 <Label Content="π1"/>
-                <TextBox x:Name="Pi1TextBox" MinWidth="50"/>
+                <TextBox x:Name="Pi1TextBox" MinWidth="50" Text="0.5"/>
                 <Label Content="π2"/>
-                <TextBox x:Name="Pi2TestBox" MinWidth="50"/>
+                <TextBox x:Name="Pi2TextBox" MinWidth="50" Text="0.5"/>
             </StackPanel>
         </Viewbox>
         <Viewbox  Grid.Row="3">
