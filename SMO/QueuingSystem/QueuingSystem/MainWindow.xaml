@@ -1,0 +1,46 @@
+﻿<Window x:Class="QueuingSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QueuingSystem"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="221*"/>
+            <RowDefinition Height="134*"/>
+            <RowDefinition Height="22*"/>
+        </Grid.RowDefinitions>
+        <Viewbox Grid.Row="2">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Lочм"/>
+                    <Label x:Name="LabelVehicleQueryLength"/>
+                    <Label Content="Lочл:"/>
+                    <Label x:Name="LabelPeopleQueryLength"/>
+                    <Label Content="Wсм:"/>
+                    <Label x:Name="LabelVehicleWait"/>
+                    <Label Content="Wcл:"/>
+                    <Label x:Name="LabelPeopleWait"/>
+                    <Button Content="Calculate" Click="ButtonCalculate_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Label Content="Chance to leave:"/>
+                    <Label x:Name="ProbabilityToLeave"/>
+                </StackPanel>
+            </StackPanel>
+        </Viewbox>
+        <Viewbox Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="λ"/>
+                <TextBox x:Name="Pi1TextBox" MinWidth="50" Text="12"/>
+                <Label Content="μ"/>
+                <TextBox x:Name="Pi2TextBox" MinWidth="50" Text="12"/>
+            </StackPanel>
+        </Viewbox>
+        <Viewbox  Grid.Row="3"/>
+        <TextBlock Grid.Row="1" FontSize="30" x:Name="TextBlock" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</Window>
